@@ -1,18 +1,21 @@
-import express from "express"
-import app from "../app"
-import productController from "../controller/productController"
-const productRoute = express.Router()
+import express from "express";
+import {
+  createProduct,
+  updateProduct,
+  getAllProducts,
+  getProductDetails,
+  deleteProduct
+} from "../controller/productController";
+const productRoute = express.Router();
 
 //Route Imports
 
-productRoute.get("/products",productController.getAllProducts)
-productRoute.post("/product/new",productController.createProduct)
-productRoute.route("/product/:id")
-.put(productController.updateProduct)
-.delete(productController.deleteProduct)
-.get(productController.getProductDetails)
+productRoute.get("/products", getAllProducts);
+productRoute.post("/product/new", createProduct);
+productRoute
+  .route("/product/:id")
+  .put(updateProduct)
+  .delete(deleteProduct)
+  .get(getProductDetails);
 
-// Middleware For Error
-
-
-export default productRoute
+export default productRoute;

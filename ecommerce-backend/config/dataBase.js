@@ -1,16 +1,9 @@
-import mongoose from "mongoose"
-import { MONGO_URL } from "./appConfig"
+import mongoose from "mongoose";
+import { MONGO_URL } from "./appConfig";
 
 const dbConnection = async () => {
-    try {
-      const { connection } = await mongoose.connect(MONGO_URL,)
-      console.log(
-        `Database connected for ${connection.name} : ${connection.host}`
-      );
-    } catch (error) {
-      console.log(error);
-      process.exit(1);
-    }
-  }
+  const { connection } = await mongoose.connect(MONGO_URL);
+  console.log(`Database connected for ${connection.name} : ${connection.host}`);
+};
 
-export { dbConnection }
+export { dbConnection };
