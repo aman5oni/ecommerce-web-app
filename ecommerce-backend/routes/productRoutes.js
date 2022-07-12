@@ -5,7 +5,9 @@ import {
   getAllProducts,
   getProductDetails,
   deleteProduct,
-  createProductReview
+  createProductReview,
+  getProductReviews,
+  deleteReview
 } from "../controller/productController";
 import {
   authorizeRoles,
@@ -29,6 +31,8 @@ productRoute
 
 productRoute.route("/product/:id").get(getProductDetails);
 
-productRoute.route("/review").put(isAuthenticatedUser,createProductReview);
+productRoute.route("/review").put(isAuthenticatedUser, createProductReview);
+
+productRoute.route("/reviews").get(getProductReviews).delete(isAuthenticatedUser,deleteReview);
 
 export default productRoute;

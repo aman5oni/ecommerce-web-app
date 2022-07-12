@@ -4,6 +4,7 @@ import { errorMiddleware } from "./middleware/error";
 import userRoute from "./routes/userRoutes";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import orderRoute from "./routes/orderRoutes";
 
 const app = express();
 app.use(
@@ -17,6 +18,7 @@ app.use(express.json());
 // All Routes
 app.use(userRoute);
 app.use(productRoute);
+app.use(orderRoute);
 
 // Middleware For Error
 app.use(errorMiddleware);
