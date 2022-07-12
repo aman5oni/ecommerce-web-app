@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const productSchema = mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please Enter Product Name"]
@@ -28,44 +28,54 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
       }
-    },
-  ],
-  category:{
-    type:String,
-    required:[true,"Please Enter A Product Category"]
-  },
-  stock:{
-    type:Number,
-    required:[true,"Please Enter Product Stock"],
-    maxLength:[4,"Stock Cannot Exceeds 4 Charecters"],
-    default:1
-  },
-  numOfReviews:{
-    type:Number,
-    default:0
-  },
-  reviews:[
-    {
-        name:{
-            type:String,
-            required:true
-        },
-        rating:{
-            type:Number,
-            required:true
-        },
-        comment:{
-            type:String,
-            required:true
-        },
-        createdAt:{
-            type:Date,
-            default:Date.now
-        }
     }
-  ]
-})
+  ],
+  category: {
+    type: String,
+    required: [true, "Please Enter A Product Category"]
+  },
+  stock: {
+    type: Number,
+    required: [true, "Please Enter Product Stock"],
+    maxLength: [4, "Stock Cannot Exceeds 4 Charecters"],
+    default: 1
+  },
+  numOfReviews: {
+    type: Number,
+    default: 0
+  },
+  reviews: [
+    {
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "user",
+        required: true
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      rating: {
+        type: Number,
+        required: true
+      },
+      comment: {
+        type: String,
+        required: true
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "user",
+    required: true
+  }
+});
 
-const Product = mongoose.model("Product",productSchema)
+const Product = mongoose.model("Product", productSchema);
 
-export { Product }
+export { Product };

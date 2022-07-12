@@ -30,6 +30,7 @@ const errorMiddleware = (err, req, res, next) => {
 
   res.status(err.statusCode).json({
     success: false,
+    statusCode:err.statusCode,
     message: err.message,
   });
 }
